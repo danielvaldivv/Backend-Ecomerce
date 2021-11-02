@@ -13,3 +13,5 @@ router.get('/users', (req,res) => {
     res.send('no hay parámetros');
   }
 })
+
+module.exports = router;

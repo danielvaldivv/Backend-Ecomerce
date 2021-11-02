@@ -9,3 +9,5 @@ router.get('/categories/:categoryId/products/:productId', (req, res) => {
     productId
   });
 });
+
+module.exports = router;

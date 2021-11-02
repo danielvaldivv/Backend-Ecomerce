@@ -3,7 +3,7 @@ const faker = require('faker')
 
 const router = express.Router();
 
-router.get('/', (req, res)=> {
+router.get('/', async (req, res)=> {
   const products = [];
   const { size } = req.query;
   const limit = size || 10;
@@ -16,19 +16,30 @@ router.get('/', (req, res)=> {
     });
 
   }
-  res.json(products);
+  await res.json(products)
+  // .catch(err => res.status(500).json(err))
 });
 
-router.get('/filter', (req, res) => {
-  res.send('yo soy un filter')
+router.get('/filter', async (req, res) => {
+  await res.send('yo soy un filter')
+  .catch(err => res.status(500).json(err))
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const { id } = req.params
-  res.json({
+  await res.json({
     id,
     name: 'Producto 2',
     price: 800
+  })
+  .catch(err => res.status(500).json(err))
+});
+
+router.post('/', (req, res) => {
+  const body = req.body;
+  res.json({
+    message: 'created',
+    data: body
   });
 });
 
